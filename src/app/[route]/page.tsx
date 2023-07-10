@@ -1,8 +1,8 @@
 "use client";
 
+import { redirectService } from "@/lib/definitions";
 import { useParams, useRouter } from "next/navigation";
 import { FC, useState } from "react";
-import { redirectService } from "../dashboard/page";
 
 const Page: FC = (props) => {
 	const router = useRouter();

@@ -1,5 +1,4 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { redirectService } from "../page";
 import {
 	Dialog,
 	DialogContent,
@@ -12,6 +11,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { redirectService } from "@/lib/definitions";
 
 type NewDialogProps = {
 	open: boolean;
@@ -41,7 +41,7 @@ export const NewDialog: FC<NewDialogProps> = ({ open, setOpen }) => {
 				<DialogHeader>
 					<DialogTitle>New route</DialogTitle>
 					<DialogDescription>
-						Create your route here. Click save when you're done.
+						Create your route here. Click save when you&apos;re done.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
 	ColumnDef,
@@ -38,11 +38,7 @@ import { Route } from "@/lib/Route";
 import { EditDialog } from "./dialogs/EditDialog";
 import { NewDialog } from "./dialogs/NewDialog";
 import { AuthDialog } from "./dialogs/AuthDialog";
-
-export const redirectService = new RedirectService(
-	"https://qehlvzfvknidgmkjpgsv.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFlaGx2emZ2a25pZGdta2pwZ3N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg3NzUyNjksImV4cCI6MjAwNDM1MTI2OX0.9_oKX8F_C_i7xIqfq2UoRxeCTF1sqyqFFkaVoctjwPg"
-);
+import { redirectService } from "@/lib/definitions";
 
 const createColumns = (
 	deleteRoute: (_: string) => void
@@ -124,16 +120,13 @@ const createColumns = (
 			id: "actions",
 			enableHiding: false,
 			cell: ({ row }) => {
-				const [isEditDialogOpened, setEditDialogOpen] =
-					useState<boolean>(false);
-
 				return (
 					<>
-						<EditDialog
+						{/* <EditDialog
 							open={isEditDialogOpened}
 							setOpen={setEditDialogOpen}
 							currentRow={row}
-						/>
+						/> */}
 
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
@@ -145,11 +138,7 @@ const createColumns = (
 							<DropdownMenuContent align="end">
 								<DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-								<DropdownMenuItem
-									onClick={() => {
-										setEditDialogOpen(true);
-									}}
-								>
+								<DropdownMenuItem disabled onClick={() => {}}>
 									Edit
 								</DropdownMenuItem>
 								<DropdownMenuItem
@@ -168,7 +157,7 @@ const createColumns = (
 	];
 };
 
-export function Page() {
+const Page: FC = () => {
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -326,6 +315,6 @@ export function Page() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Page;

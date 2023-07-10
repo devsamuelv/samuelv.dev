@@ -1,7 +1,6 @@
 import { Route } from "@/lib/Route";
 import { Row } from "@tanstack/react-table";
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { redirectService } from "../page";
 import {
 	Dialog,
 	DialogContent,
@@ -14,6 +13,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { redirectService } from "@/lib/definitions";
 
 type EditDialogProps = {
 	open: boolean;
@@ -48,7 +48,7 @@ export const EditDialog: FC<EditDialogProps> = ({
 				<DialogHeader>
 					<DialogTitle>Edit profile</DialogTitle>
 					<DialogDescription>
-						Make changes to your route here. Click save when you're done.
+						Make changes to your route here. Click save when you&apos;re done.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">

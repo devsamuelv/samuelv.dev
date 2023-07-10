@@ -1,5 +1,4 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { redirectService } from "../page";
 import {
 	Dialog,
 	DialogContentNoClose,
@@ -11,6 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { redirectService } from "@/lib/definitions";
 
 type AuthDialogProps = {
 	open: boolean;
@@ -34,7 +34,7 @@ export const AuthDialog: FC<AuthDialogProps> = ({ open, setOpen }) => {
 			<DialogContentNoClose className="sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>Authentication</DialogTitle>
-					<DialogDescription>You're not signed in!</DialogDescription>
+					<DialogDescription>You&apos;re not signed in!</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
 					<div className="grid items-center grid-cols-4 gap-4">
