@@ -20,11 +20,16 @@ type AuthDialogProps = {
 export const AuthDialog: FC<AuthDialogProps> = ({ open, setOpen }) => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const login = async () => {
+		setLoading(true);
+
 		const session = await redirectService.login(email, password);
 
 		if (session != null) {
+			// Close dialog and cleanup
+			setLoading(false);
 			setOpen(false);
 		}
 	};
@@ -63,7 +68,12 @@ export const AuthDialog: FC<AuthDialogProps> = ({ open, setOpen }) => {
 					</div>
 				</div>
 				<DialogFooter>
-					<Button className="w-full" type="submit" onClick={() => login()}>
+					<Button
+						className="w-full"
+						type="submit"
+						onClick={() => login()}
+						disabled={loading}
+					>
 						Login
 					</Button>
 				</DialogFooter>

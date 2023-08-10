@@ -8,24 +8,27 @@ const Page: FC = (props) => {
 	const router = useRouter();
 	const { route } = useParams();
 	const [valid, setValid] = useState<boolean>();
+	const [response, setResponse] = useState<string>();
 
-	redirectService.getRoute(route.toLowerCase()).then((r) => {
-		if (r != null) {
-			router.replace(r.link);
-			setValid(true);
-		} else {
+	redirectService
+		.getRoute(route.toLowerCase())
+		.then((r) => {
+			if (r != null) {
+				router.replace(r.link);
+				setValid(true);
+				setResponse("Redirecting....");
+			} else {
+				setValid(false);
+				setResponse("Invalid url");
+			}
+		})
+		.catch((err) => {
 			setValid(false);
-		}
-	});
+			setResponse(err.message);
+		});
 
 	return (
-		<div>
-			{valid == null ? (
-				<div>Loading...</div>
-			) : (
-				<div>{valid ? <div>Redirecting</div> : <div>Invalid url</div>}</div>
-			)}
-		</div>
+		<div>{valid == null ? <div>Loading...</div> : <div>{response}</div>}</div>
 	);
 };
 

@@ -94,6 +94,10 @@ export class RedirectService {
   }
 
   public async isAuthenticated(): Promise<boolean> {
+    if (process.env.NODE_ENV == "development") {
+      return true;
+    }
+
     return (await this.client.auth.getSession()).data.session != null;
   }
 

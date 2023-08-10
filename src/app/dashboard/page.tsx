@@ -33,12 +33,11 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { RedirectService } from "@/lib/RedirectService";
 import { Route } from "@/lib/Route";
-import { EditDialog } from "./dialogs/EditDialog";
 import { NewDialog } from "./dialogs/NewDialog";
 import { AuthDialog } from "./dialogs/AuthDialog";
 import { redirectService } from "@/lib/definitions";
+import Head from "next/head";
 
 const createColumns = (
 	deleteRoute: (_: string) => void
@@ -220,6 +219,7 @@ const Page: FC = () => {
 
 	return (
 		<div className="flex flex-row h-screen">
+			<Head>Dashboard</Head>
 			<NewDialog open={newDialogOpen} setOpen={setNewDialogOpen} />
 			<AuthDialog open={authDialogOpen} setOpen={setAuthDialogOpen} />
 
