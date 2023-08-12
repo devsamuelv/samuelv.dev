@@ -38,6 +38,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { redirectService } from "@/lib/Definitions";
+import { File } from "@/lib/File";
 
 type Props = {
 	setNewDialogOpen: Dispatch<SetStateAction<boolean>>;
@@ -46,7 +47,7 @@ type Props = {
 
 export const FileSection: FC<Props> = ({ setNewDialogOpen, newDialogOpen }) => {
 	const deleteRoute = (id: string) => {
-		redirectService.deleteRoute(id).then(() => fetchRoutes());
+		redirectService.deleteRoute(id).then(() => fetchFiles());
 	};
 
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -55,19 +56,15 @@ export const FileSection: FC<Props> = ({ setNewDialogOpen, newDialogOpen }) => {
 	const [rowSelection, setRowSelection] = useState({});
 	const columns = createColumns(deleteRoute);
 
-	const fetchRoutes = () => {
-		redirectService.getAllRoutes().then((routes) => {
-			if (routes != null) {
-				setRoutes(routes);
-			}
-		});
+	const fetchFiles = () => {
+		// Add file fetching here.
 	};
 
-	const [routes, setRoutes] = useState<Route[]>([]);
+	const [routes, setRoutes] = useState<File[]>([]);
 
 	useEffect(() => {
 		if (newDialogOpen == false) {
-			fetchRoutes();
+			fetchFiles();
 		}
 	}, [newDialogOpen]);
 
@@ -186,9 +183,7 @@ export const FileSection: FC<Props> = ({ setNewDialogOpen, newDialogOpen }) => {
 	);
 };
 
-const createColumns = (
-	deleteRoute: (_: string) => void
-): ColumnDef<Route>[] => {
+const createColumns = (deleteRoute: (_: string) => void): ColumnDef<File>[] => {
 	return [
 		{
 			id: "select",
@@ -217,14 +212,14 @@ const createColumns = (
 			),
 		},
 		{
-			accessorKey: "route",
+			accessorKey: "id",
 			header: ({ column }) => {
 				return (
 					<Button
 						variant="ghost"
 						onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 					>
-						Route
+						Id
 						<CaretSortIcon className="w-4 h-4 ml-2" />
 					</Button>
 				);
@@ -234,20 +229,20 @@ const createColumns = (
 			),
 		},
 		{
-			accessorKey: "link",
+			accessorKey: "filename",
 			header: ({ column }) => {
 				return (
 					<Button
 						variant="ghost"
 						onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 					>
-						Link
+						Filename
 						<CaretSortIcon className="w-4 h-4 ml-2" />
 					</Button>
 				);
 			},
 			cell: ({ row }) => (
-				<div className="lowercase">{row.getValue("link")}</div>
+				<div className="lowercase">{row.getValue("filename")}</div>
 			),
 		},
 		{

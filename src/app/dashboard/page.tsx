@@ -1,33 +1,11 @@
 "use client";
+import Head from "next/head";
 
 import { FC, useEffect, useState } from "react";
-import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
-import {
-	ColumnDef,
-	ColumnFiltersState,
-	SortingState,
-	VisibilityState,
-	getCoreRowModel,
-	getFilteredRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
-	useReactTable,
-} from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Route } from "@/lib/Route";
 import { NewLinkDialog } from "./dialogs/NewLinkDialog";
 import { AuthDialog } from "./dialogs/AuthDialog";
 import { redirectService } from "@/lib/Definitions";
-import Head from "next/head";
 import { LinkSection } from "./components/LinkSection";
 import { FileSection } from "./components/FileSection";
 
