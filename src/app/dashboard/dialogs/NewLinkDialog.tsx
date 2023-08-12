@@ -1,5 +1,3 @@
-import { Route } from "@/lib/Route";
-import { Row } from "@tanstack/react-table";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import {
 	Dialog,
@@ -13,21 +11,16 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { redirectService } from "@/lib/definitions";
+import { redirectService } from "@/lib/Definitions";
 
-type EditDialogProps = {
+type NewDialogProps = {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	currentRow: Row<Route>;
 };
 
-export const EditDialog: FC<EditDialogProps> = ({
-	open,
-	setOpen,
-	currentRow,
-}) => {
-	const [link, setLink] = useState<string>(currentRow.getValue("link"));
-	const [route, setRoute] = useState<string>(currentRow.getValue("route"));
+export const NewLinkDialog: FC<NewDialogProps> = ({ open, setOpen }) => {
+	const [link, setLink] = useState<string>("https://github.com/devsamuelv");
+	const [route, setRoute] = useState<string>("github");
 	const [status, setStatus] = useState<"active" | "inactive">();
 
 	const saveRoute = () => {
@@ -46,9 +39,9 @@ export const EditDialog: FC<EditDialogProps> = ({
 			<DialogTrigger asChild></DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Edit profile</DialogTitle>
+					<DialogTitle>New route</DialogTitle>
 					<DialogDescription>
-						Make changes to your route here. Click save when you&apos;re done.
+						Create your route here. Click save when you&apos;re done.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -58,7 +51,6 @@ export const EditDialog: FC<EditDialogProps> = ({
 						</Label>
 						<Input
 							id="route"
-							disabled
 							value={route}
 							onChange={(e) => setRoute(e.target.value)}
 							className="col-span-3"
@@ -78,7 +70,7 @@ export const EditDialog: FC<EditDialogProps> = ({
 				</div>
 				<DialogFooter>
 					<Button type="submit" onClick={() => saveRoute()}>
-						Save changes
+						Create route
 					</Button>
 				</DialogFooter>
 			</DialogContent>

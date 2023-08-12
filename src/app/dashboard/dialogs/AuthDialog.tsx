@@ -10,7 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { redirectService } from "@/lib/definitions";
+import { redirectService } from "@/lib/Definitions";
 
 type AuthDialogProps = {
 	open: boolean;

@@ -1,6 +1,6 @@
 "use client";
 
-import { redirectService } from "@/lib/definitions";
+import { redirectService } from "@/lib/Definitions";
 import { useParams, useRouter } from "next/navigation";
 import { FC, useState } from "react";
 
@@ -15,6 +15,7 @@ const Page: FC = (props) => {
 		.then((r) => {
 			if (r != null) {
 				router.replace(r.link);
+
 				setValid(true);
 				setResponse("Redirecting....");
 			} else {
